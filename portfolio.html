@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eimaan Khan — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white: #ffffff;
+      --bg: #f4f5f8;
+      --card: #ffffff;
+      --sidebar: #1e2a3b;
+      --accent: #f97316;
+      --accent2: #3b82f6;
+      --text: #1e2a3b;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --radius: 16px;
+      --font: 'Nunito', sans-serif;
+      --font-display: 'Playfair Display', serif;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      align-items: stretch;
+      min-height: 100vh;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      width: 280px;
+      min-width: 280px;
+      background: var(--sidebar);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 24px 32px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .avatar-wrap {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent) 0%, #fb923c 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 32px rgba(249,115,22,0.35);
+      flex-shrink: 0;
+    }
+
+    .sidebar-name {
+      font-family: var(--font-display);
+      font-size: 22px;
+      color: #fff;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .sidebar-role {
+      font-size: 12px;
+      color: var(--accent);
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .divider {
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      margin: 0 auto 28px;
+    }
+
+    .sidebar-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .info-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .info-content {
+      flex: 1;
+    }
+
+    .info-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 2px;
+    }
+
+    .info-value {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      word-break: break-all;
+    }
+
+    .info-value a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+    }
+
+    .info-value a:hover { color: var(--accent); }
+
+    .sidebar-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 24px;
+    }
+
+    .social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 16px;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .social-btn:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    /* ─── MAIN ─── */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    /* ─── TOP NAV ─── */
+    .topnav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topnav-tabs {
+      display: flex;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 8px;
+      border: none;
+      background: none;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover { color: var(--text); background: var(--bg); }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .topnav-cta {
+      padding: 9px 22px;
+      border-radius: 8px;
+      background: var(--text);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .topnav-cta:hover { background: var(--accent); }
+
+    /* ─── CONTENT ─── */
+    .content {
+      padding: 40px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .tab-panel { display: none; animation: fadeIn 0.35s ease; }
+    .tab-panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── ABOUT PANEL ─── */
+    .about-hero {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 40px 44px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      right: -60px; top: -60px;
+      width: 240px; height: 240px;
+      border-radius: 50%;
+      background: rgba(249,115,22,0.06);
+    }
+
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      right: 40px; top: 20px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: rgba(59,130,246,0.05);
+    }
+
+    .greeting {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .hero-heading {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .typed-wrap {
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      max-width: 520px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .btn {
+      padding: 11px 26px;
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-accent { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: #ea6c0a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(249,115,22,0.35); }
+    .btn-outline { background: transparent; color: var(--text); border: 2px solid var(--border); }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      text-align: center;
+      border: 2px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .stat-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+
+    .stat-card .num {
+      font-family: var(--font-display);
+      font-size: 36px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-card .lbl {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* What I do */
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .service-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 24px 20px;
+      border-left: 3px solid var(--accent);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.07); }
+
+    .service-icon { font-size: 28px; margin-bottom: 12px; }
+    .service-name { font-weight: 800; font-size: 14px; margin-bottom: 6px; }
+    .service-desc { font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+    /* ─── RESUME PANEL ─── */
+    .resume-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .resume-section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .resume-section-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+    }
+
+    .resume-section-title span.icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: rgba(249,115,22,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .timeline { position: relative; padding-left: 20px; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 24px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .tl-year {
+      display: inline-block;
+      background: rgba(249,115,22,0.1);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .tl-title {
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .tl-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .tl-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* Skills */
+    .skills-full {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .skill-category {
+      margin-bottom: 24px;
+    }
+
+    .skill-category:last-child { margin-bottom: 0; }
+
+    .skill-cat-title {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .skill-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skill-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .skill-name-label {
+      font-size: 12px;
+      font-weight: 700;
+      min-width: 110px;
+      color: var(--text);
+    }
+
+    .bar-bg {
+      flex: 1;
+      height: 6px;
+      background: var(--bg);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent), #fb923c);
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bar-pct {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      min-width: 32px;
+      text-align: right;
+    }
+
+    /* Tags */
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 5px 13px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .chip:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ─── WORKS PANEL ─── */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .work-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      border: 1px solid var(--border);
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+    }
+
+    .work-thumb {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .work-thumb .accuracy-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .work-body { padding: 20px; }
+
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .work-tag {
+      background: rgba(249,115,22,0.08);
+      color: var(--accent);
+      border-radius: 4px;
+      padding: 2px 9px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .work-title {
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .work-desc {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ─── CONTACT PANEL ─── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .contact-info-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .contact-info-card h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .contact-info-card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 28px;
+    }
+
+    .contact-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(249,115,22,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .ci-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .ci-value { font-size: 13px; font-weight: 700; }
+    .ci-value a { color: var(--text); text-decoration: none; }
+    .ci-value a:hover { color: var(--accent); }
+
+    .contact-form-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 32px;
+    }
+
+    .contact-form-card h3 {
+      font-family: var(--font-display);
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--font);
+      font-size: 13px;
+      color: var(--text);
+      background: var(--bg);
+      outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus { border-color: var(--accent); background: #fff; }
+
+    .form-group textarea { height: 100px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      body { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 24px; gap: 16px; position: static; }
+      .sidebar-name { font-size: 18px; }
+      .topnav { padding: 12px 16px; flex-wrap: wrap; gap: 12px; }
+      .content { padding: 20px; }
+      .resume-grid { grid-template-columns: 1fr; }
+      .contact-layout { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .tab-btn { padding: 6px 12px; font-size: 12px; }
+      .works-grid { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="avatar-wrap">EK</div>
+    <div class="sidebar-name">Eimaan Khan</div>
+    <div class="sidebar-role">AI &amp; CS Student</div>
+    <div class="divider"></div>
+    <div class="sidebar-info">
+      <div class="info-row">
+        <div class="info-icon">📍</div>
+        <div class="info-content">
+          <div class="info-label">Location</div>
+          <div class="info-value">Mardan, Pakistan</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">✉️</div>
+        <div class="info-content">
+          <div class="info-label">Email</div>
+          <div class="info-value"><a href="mailto:eimaankhan63@gmail.com">eimaankhan63@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">📞</div>
+        <div class="info-content">
+          <div class="info-label">Phone</div>
+          <div class="info-value">+92 318 8008500</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🎓</div>
+        <div class="info-content">
+          <div class="info-label">University</div>
+          <div class="info-value">UET Mardan</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🗓️</div>
+        <div class="info-content">
+          <div class="info-label">Graduation</div>
+          <div class="info-value">2027</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-socials">
+      <a href="https://github.com/EimaanKhan1" target="_blank" class="social-btn" title="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </a>
+      <a href="mailto:eimaankhan63@gmail.com" class="social-btn" title="Email">✉</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <!-- TOP NAV -->
+    <nav class="topnav">
+      <div class="topnav-tabs">
+        <button class="tab-btn active" data-tab="about">About</button>
+        <button class="tab-btn" data-tab="resume">Resume</button>
+        <button class="tab-btn" data-tab="works">Projects</button>
+        <button class="tab-btn" data-tab="contact">Contact</button>
+      </div>
+      <a href="mailto:eimaankhan63@gmail.com" class="topnav-cta">Hire Me</a>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- ═══ ABOUT ═══ -->
+      <div class="tab-panel active" id="about">
+        <div class="about-hero">
+          <div class="greeting">Hello, I'm</div>
+          <h1 class="hero-heading">
+            Eimaan Khan<br/>
+            <span class="typed-wrap" id="typed-text">AI Developer</span>
+          </h1>
+          <p class="hero-desc">
+            Computer Science undergraduate specializing in Artificial Intelligence at UET Mardan.
+            I build predictive models, deep learning systems, and full-stack web applications —
+            turning data into meaningful results.
+          </p>
+          <div class="hero-btns">
+            <a href="#" class="btn btn-accent" onclick="switchTab('works'); return false;">View Projects</a>
+            <a href="#" class="btn btn-outline" onclick="switchTab('contact'); return false;">Contact Me</a>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="num">6+</div>
+            <div class="lbl">Projects</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">99%</div>
+            <div class="lbl">Best Accuracy</div>
+          </div>
+          <div class="stat-card">
+            <div class="num">3+</div>
+            <div class="lbl">Languages</div>
+          </div>
+        </div>
+
+        <h2 class="section-title">What I Do</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🧠</div>
+            <div class="service-name">Machine Learning</div>
+            <div class="service-desc">Building and evaluating ML models using scikit-learn, TensorFlow, and Keras for real-world prediction tasks.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🖼️</div>
+            <div class="service-name">Deep Learning</div>
+            <div class="service-desc">Designing CNNs, LSTMs, and transfer learning pipelines for image classification and sequence modeling.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <div class="service-name">Web Development</div>
+            <div class="service-desc">Building full-stack applications with Django, Flask, HTML/CSS, JavaScript, and Bootstrap.</div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📊</div>
+            <div class="service-name">Data Analysis</div>
+            <div class="service-desc">Exploring and visualizing datasets using Pandas, NumPy, and Matplotlib to extract meaningful insights.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ RESUME ═══ -->
+      <div class="tab-panel" id="resume">
+        <div class="resume-grid">
+          <div class="resume-section">
+            <div class="resume-section-title">
+              <span class="icon">🎓</span> Education
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="tl-year">2023 – 2027</span>
+                <div class="tl-title">BS Computer Science (AI)</div>
+                <div class="tl-sub">University of Engineering &amp; Technology Mardan</div>
+                <div class="tl-desc">Specialization in Artificial Intelligence — covering ML, deep learning, algorithms, and software engineering.</div>
+              </div>
+              <div class="timeline-item">
+                <span class="tl-year">2019 – 2021</span>
+                <div class="tl-title">FSC Pre-Medical</div>
+                <div class="tl-sub">The PEACE School &amp; College, Mardan</div>
+                <div class="tl-desc">Strong foundation in science and analytical thinking.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="resume-section">
+            <div class="resume-section-title">
+              <span class="icon">💼</span> Experience &amp; Activities
+            </div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span class="tl-year">Ongoing</span>
+                <div class="tl-title">Independent AI Projects</div>
+                <div class="tl-sub">Self-directed Research</div>
+                <div class="tl-desc">Built 6 ML/DL projects covering image classification, NLP, web dev, and network programming.</div>
+              </div>
+              <div class="timeline-item">
+                <span class="tl-year">2023 – Now</span>
+                <div class="tl-title">Team Lead &amp; Collaborator</div>
+                <div class="tl-sub">University Projects &amp; Labs</div>
+                <div class="tl-desc">Led project teams, managed timelines, and delivered high-quality academic and extracurricular outputs.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div class="skills-full">
+          <div class="resume-section-title" style="margin-bottom:24px;">
+            <span class="icon">⚡</span> Technical Skills
+          </div>
+          <div class="skill-category">
+            <div class="skill-cat-title">Programming &amp; ML</div>
+            <div class="skill-bars">
+              <div class="skill-bar-row">
+                <span class="skill-name-label">Python</span>
+                <div class="bar-bg"><div class="bar-fill" data-pct="95"></div></div>
+                <span class="bar-pct">95%</span>
+              </div>
+              <div class="skill-bar-row">
+                <span class="skill-name-label">TensorFlow/Keras</span>
+                <div class="bar-bg"><div class="bar-fill" data-pct="88"></div></div>
+                <span class="bar-pct">88%</span>
+              </div>
+              <div class="skill-bar-row">
+                <span class="skill-name-label">scikit-learn</span>
+                <div class="bar-bg"><div class="bar-fill" data-pct="85"></div></div>
+                <span class="bar-pct">85%</span>
+              </div>
+              <div class="skill-bar-row">
+                <span class="skill-name-label">JavaScript</span>
+                <div class="bar-bg"><div class="bar-fill" data-pct="72"></div></div>
+                <span class="bar-pct">72%</span>
+              </div>
+            </div>
+          </div>
+          <div class="skill-category" style="margin-top:20px;">
+            <div class="skill-cat-title">Tools &amp; Frameworks</div>
+            <div class="tag-cloud">
+              <span class="chip">Django</span>
+              <span class="chip">Flask</span>
+              <span class="chip">Bootstrap</span>
+              <span class="chip">NumPy</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">Matplotlib</span>
+              <span class="chip">Git &amp; GitHub</span>
+              <span class="chip">VS Code</span>
+              <span class="chip">Jupyter</span>
+              <span class="chip">Android Studio</span>
+              <span class="chip">Java</span>
+              <span class="chip">C++</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ WORKS ═══ -->
+      <div class="tab-panel" id="works">
+        <div class="works-grid">
+
+          <div class="work-card">
+            <div class="work-thumb" style="background:linear-gradient(135deg,#fef3c7,#fde68a);">
+              🌸
+              <span class="accuracy-badge">95%+ Accuracy</span>
+            </div>
+            <div class="work-body">
+              <div class="work-tags">
+                <span class="work-tag">Deep Learning</span>
+                <span class="work-tag">CNN</span>
+              </div>
+              <div class="work-title">Flower Classification using CNNs</div>
+              <div class="work-desc">Transfer learning with VGG16 to classify 5 flower categories. Applied dropout regularization and feature extraction.</div>
+              <div class="work-tags" style="margin-top:12px;gap:5px;">
+                <span style="font-size:11px;color:var(--muted);">Python · TensorFlow · VGG16 · scikit-learn</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <div class="work-thumb" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);">
+              🛒
+              <span class="accuracy-badge">Full Stack</span>
+            </div>
+            <div class="work-body">
+              <div class="work-tags">
+                <span class="work-tag">Web App</span>
+                <span class="work-tag">Django</span>
+              </div>
+              <div class="work-title">E-Commerce Web Application</div>
+              <div class="work-desc">Full-stack platform with auth, product browsing, cart, and checkout. Relational DB models and admin panel included.</div>
+              <div class="work-tags" style="margin-top:12px;gap:5px;">
+                <span style="font-size:11px;color:var(--muted);">Python · Django · Bootstrap · SQLite</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <div class="work-thumb" style="background:linear-gradient(135deg,#fce7f3,#fbcfe8);">
+              🩺
+              <span class="accuracy-badge">78.3% Accuracy</span>
+            </div>
+            <div class="work-body">
+              <div class="work-tags">
+                <span class="work-tag">ML</span>
+                <span class="work-tag">Healthcare</span>
+              </div>
+              <div class="work-title">Diabetes Prediction System</div>
+              <div class="work-desc">ML models for diabetes prediction with cross-validation and confusion matrix evaluation.</div>
+              <div class="work-tags" style="margin-top:12px;gap:5px;">
+                <span style="font-size:11px;color:var(--muted);">Python · scikit-learn · Pandas · Matplotlib</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <div class="work-thumb" style="background:linear-gradient(135deg,#d1fae5,#a7f3d0);">
+              🔥
+              <span class="accuracy-badge">96.15% Accuracy</span>
+            </div>
+            <div class="work-body">
+              <div class="work-tags">
+                <span class="work-tag">LSTM</span>
+                <span class="work-tag">Environment</span>
+              </div>
+              <div class="work-title">Forest Fire Size Prediction</div>
+              <div class="work-desc">LSTM-based classifier predicting fire size categories from environmental data with 96.15% test accuracy.</div>
+              <div class="work-tags" style="margin-top:12px;gap:5px;">
+                <span style="font-size:11px;color:var(--muted);">TensorFlow · Keras · Pandas · scikit-learn</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <div class="work-thumb" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);">
+              ✏️
+              <span class="accuracy-badge">99% Accuracy</span>
+            </div>
+            <div class="work-body">
+              <div class="work-tags">
+                <span class="work-tag">BiLSTM</span>
+                <span class="work-tag">MNIST</span>
+              </div>
+              <div class="work-title">Handwritten Digit Recognition</div>
+              <div class="work-desc">Bidirectional LSTM for MNIST with 99% accuracy. Evaluated with F1-score, confusion matrix, and AUC-ROC.</div>
+              <div class="work-tags" style="margin-top:12px;gap:5px;">
+                <span style="font-size:11px;color:var(--muted);">TensorFlow · Keras · scikit-learn · Matplotlib</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="work-card">
+            <div class="work-thumb" style="background:linear-gradient(135deg,#fee2e2,#fecaca);">
+              🖥️
+              <span class="accuracy-badge">Low Level</span>
+            </div>
+            <div class="work-body">
+              <div class="work-tags">
+                <span class="work-tag">Networking</span>
+                <span class="work-tag">Sockets</span>
+              </div>
+              <div class="work-title">Mini HTTP Server</div>
+              <div class="work-desc">HTTP server from scratch using socket programming. Handles multiple clients and static file routing.</div>
+              <div class="work-tags" style="margin-top:12px;gap:5px;">
+                <span style="font-size:11px;color:var(--muted);">Python · Socket Programming · HTTP · HTML/CSS</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ═══ CONTACT ═══ -->
+      <div class="tab-panel" id="contact">
+        <div class="contact-layout">
+          <div class="contact-info-card">
+            <h3>Get In Touch</h3>
+            <p>I'm open to internships, research collaborations, and interesting AI/web projects. Feel free to reach out — I respond quickly!</p>
+            <div class="contact-items">
+              <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div>
+                  <div class="ci-label">Email</div>
+                  <div class="ci-value"><a href="mailto:eimaankhan63@gmail.com">eimaankhan63@gmail.com</a></div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div>
+                  <div class="ci-label">Phone</div>
+                  <div class="ci-value">+92 318 8008500</div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">🐙</div>
+                <div>
+                  <div class="ci-label">GitHub</div>
+                  <div class="ci-value"><a href="https://github.com/EimaanKhan1" target="_blank">github.com/EimaanKhan1</a></div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <div class="ci-label">Location</div>
+                  <div class="ci-value">Mardan, Pakistan</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form-card">
+            <h3>Send a Message</h3>
+            <div class="form-group">
+              <label>Your Name</label>
+              <input type="text" placeholder="Enter your name"/>
+            </div>
+            <div class="form-group">
+              <label>Your Email</label>
+              <input type="email" placeholder="Enter your email"/>
+            </div>
+            <div class="form-group">
+              <label>Subject</label>
+              <input type="text" placeholder="What's it about?"/>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Your message here..."></textarea>
+            </div>
+            <button class="btn btn-accent" style="width:100%;justify-content:center;" onclick="alert('Message sent! (Connect a backend to make this work)')">Send Message ✉</button>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content -->
+  </main>
+
+  <script>
+    // ── TAB SWITCHING ──
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+      if (tabId === 'resume') animateBars();
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // ── SKILL BARS ──
+    function animateBars() {
+      document.querySelectorAll('.bar-fill').forEach(bar => {
+        const pct = bar.dataset.pct;
+        setTimeout(() => { bar.style.width = pct + '%'; }, 100);
+      });
+    }
+
+    // ── TYPING EFFECT ──
+    const phrases = ['AI Developer', 'ML Engineer', 'Python Developer', 'Deep Learning Enthusiast'];
+    let pi = 0, ci = 0, deleting = false;
+    const el = document.getElementById('typed-text');
+
+    function type() {
+      const current = phrases[pi];
+      el.textContent = deleting ? current.slice(0, ci--) : current.slice(0, ci++);
+      let delay = deleting ? 60 : 100;
+      if (!deleting && ci === current.length + 1) { delay = 1800; deleting = true; }
+      if (deleting && ci < 0) { deleting = false; pi = (pi + 1) % phrases.length; ci = 0; delay = 400; }
+      setTimeout(type, delay);
+    }
+
+    type();
+  </script>
+</body>
+</html>
